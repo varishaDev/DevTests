@@ -169,30 +169,35 @@ namespace EmployeeShiftScheduler.DatabaseService
             {
                 connection.Open();
 
-                var employees = GetEmployees();  
-                var shifts = GetShifts();  
+                var employees = GetEmployees();
+                var shifts = GetShifts();
+
+                List<Shifts> remainingShifts = new List<Shifts>(shifts);
 
                 // Generate a schedule and store it in the Schedule table
-                foreach (var employee in employees)
+                while (remainingShifts.Count > 0)
                 {
-                    // Get the employee's available days
-                    var availableDays = new List<string>();
-
-                    if (employee.Availability.Monday) availableDays.Add("Monday");
-                    if (employee.Availability.Tuesday) availableDays.Add("Tuesday");
-                    if (employee.Availability.Wednesday) availableDays.Add("Wednesday");
-                    if (employee.Availability.Thursday) availableDays.Add("Thursday");
-
-                    // If the employee has available days, assign shifts
-                    if (availableDays.Count > 0)
+                    foreach (var employee in employees)
                     {
-                        foreach (var day in availableDays)
+                        // Get the employee's available days
+                        var availableDays = new List<string>();
+
+                        if (employee.Availability.Monday) availableDays.Add("Monday");
+                        if (employee.Availability.Tuesday) availableDays.Add("Tuesday");
+                        if (employee.Availability.Wednesday) availableDays.Add("Wednesday");
+                        if (employee.Availability.Thursday) availableDays.Add("Thursday");
+
+                        // If the employee has available days and there are shifts left
+                        if (availableDays.Count > 0 && remainingShifts.Count > 0)
                         {
-                            // Select a shift for the day
-                            var shift = shifts.OrderBy(s => Guid.NewGuid()).FirstOrDefault();  // Randomly select a shift
+                            // Select a shift for the day from remaining shifts
+                            var shift = remainingShifts.FirstOrDefault();  // Always take the first shift (which hasn't been assigned)
 
                             if (shift != null)
                             {
+                                // Randomly select one of the available days
+                                var day = availableDays.OrderBy(d => Guid.NewGuid()).FirstOrDefault();
+
                                 string query = @"
                             INSERT INTO Schedule (EmployeeId, ScheduledWorkDay, ShiftId)
                             VALUES (@EmployeeId, @ScheduledWorkDay, @ShiftId)";
@@ -205,8 +210,17 @@ namespace EmployeeShiftScheduler.DatabaseService
 
                                     command.ExecuteNonQuery();
                                     schedulesCreated++;
+
+                                    // Remove the assigned shift from the remaining shifts
+                                    remainingShifts.Remove(shift);
                                 }
                             }
+                        }
+
+                        // If there are no remaining shifts, break out of the outer loop to stop processing
+                        if (remainingShifts.Count == 0)
+                        {
+                            break;
                         }
                     }
                 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmployeeShiftScheduler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8af1a67756c6b24709f4dfb2af3e485055fdf74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+877053bd263dd579823e50ef861a5d8b6084b75a")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmployeeShiftScheduler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmployeeShiftScheduler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
