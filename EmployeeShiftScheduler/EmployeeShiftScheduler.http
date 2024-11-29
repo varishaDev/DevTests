@@ -1,0 +1,6 @@
+@EmployeeShiftScheduler_HostAddress = http://localhost:5108
+
+GET {{EmployeeShiftScheduler_HostAddress}}/
+Accept: application/json
+
+###

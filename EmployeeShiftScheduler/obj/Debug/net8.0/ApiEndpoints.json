@@ -1,0 +1,52 @@
+[
+  {
+    "ContainingType": "EmployeeController",
+    "Method": "GetEmployees",
+    "RelativePath": "api/Employee/GetEmployees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeController",
+    "Method": "IngestEmployees",
+    "RelativePath": "api/Employee/IngestEmployees",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeShiftScheduler.Controllers.ScheduleController",
+    "Method": "GenerateAndStoreSchedule",
+    "RelativePath": "api/Schedule/GenerateAndStoreSchedule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeShiftScheduler.Controllers.ScheduleController",
+    "Method": "GetSchedule",
+    "RelativePath": "api/Schedule/GetSchedule",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmployeeShiftScheduler.Controllers.ShiftsController",
+    "Method": "IngestShifts",
+    "RelativePath": "api/Shifts/IngestShifts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
